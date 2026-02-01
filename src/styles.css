@@ -7,7 +7,7 @@
     @apply antialiased;
   }
   body {
-    @apply m-0 font-sans text-slate-800 bg-slate-100;
+    @apply m-0 font-sans text-slate-800 bg-slate-100 min-h-screen overflow-x-hidden;
   }
   a {
     @apply text-inherit no-underline;

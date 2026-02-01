@@ -14,6 +14,7 @@ export interface NavItem {
 })
 export class SidebarComponent {
   @Input() collapsed = false;
+  @Input() mobileOpen = false;
   @Output() toggle = new EventEmitter<void>();
 
   navItems: NavItem[] = [

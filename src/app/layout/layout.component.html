@@ -1,8 +1,17 @@
-<div class="flex min-h-screen bg-slate-100" [class.sidebar-collapsed]="sidebarCollapsed">
-  <app-sidebar [collapsed]="sidebarCollapsed" (toggle)="toggleSidebar()"></app-sidebar>
+<div class="flex min-h-screen bg-slate-100" [class.sidebar-open]="sidebarOpen" [class.sidebar-collapsed]="sidebarCollapsed">
+  <div
+    class="sidebar-overlay fixed inset-0 z-[90] bg-black/50 opacity-0 pointer-events-none transition-opacity duration-250 md:hidden"
+    [class.opacity-100]="sidebarOpen"
+    [class.pointer-events-auto]="sidebarOpen"
+    (click)="sidebarOpen = false"
+    role="button"
+    tabindex="-1"
+    aria-label="Close menu">
+  </div>
+  <app-sidebar [collapsed]="sidebarCollapsed" [mobileOpen]="sidebarOpen"></app-sidebar>
   <div class="cms-main flex flex-1 flex-col min-w-0 transition-[margin-left] duration-250">
     <app-header (menuClick)="toggleSidebar()"></app-header>
-    <main class="flex-1 p-6 overflow-auto">
+    <main class="flex-1 p-4 sm:p-5 md:p-6 overflow-auto">
       <router-outlet></router-outlet>
     </main>
   </div>

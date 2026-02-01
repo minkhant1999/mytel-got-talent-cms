@@ -1,17 +1,22 @@
-.cms-main {
-  margin-left: 260px;
+/* Desktop / tablet: sidebar takes space */
+@media (min-width: 768px) {
+  .cms-main {
+    margin-left: 260px;
+  }
+
+  .sidebar-collapsed .cms-main {
+    margin-left: 72px;
+  }
 }
 
-.sidebar-collapsed .cms-main {
-  margin-left: 72px;
-}
-
-@media (max-width: 768px) {
+/* Mobile: no margin, sidebar is overlay drawer */
+@media (max-width: 767px) {
   .cms-main {
     margin-left: 0;
   }
 
-  .sidebar-collapsed .cms-main {
-    margin-left: 0;
+  .sidebar-open app-sidebar ::ng-deep .sidebar {
+    transform: translateX(0);
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.2);
   }
 }

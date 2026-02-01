@@ -2,3 +2,11 @@
 :host ::ng-deep a.active {
   @apply bg-amber-500/15 text-amber-500;
 }
+
+/* Mobile: sidebar off-screen by default; layout adds .sidebar-open to show */
+@media (max-width: 767px) {
+  :host ::ng-deep .sidebar {
+    width: 260px;
+    max-width: 85vw;
+  }
+}
