@@ -1,0 +1,17 @@
+.cms-main {
+  margin-left: 260px;
+}
+
+.sidebar-collapsed .cms-main {
+  margin-left: 72px;
+}
+
+@media (max-width: 768px) {
+  .cms-main {
+    margin-left: 0;
+  }
+
+  .sidebar-collapsed .cms-main {
+    margin-left: 0;
+  }
+}

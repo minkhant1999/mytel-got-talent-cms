@@ -1,0 +1,9 @@
+<div class="flex min-h-screen bg-slate-100" [class.sidebar-collapsed]="sidebarCollapsed">
+  <app-sidebar [collapsed]="sidebarCollapsed" (toggle)="toggleSidebar()"></app-sidebar>
+  <div class="cms-main flex flex-1 flex-col min-w-0 transition-[margin-left] duration-250">
+    <app-header (menuClick)="toggleSidebar()"></app-header>
+    <main class="flex-1 p-6 overflow-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

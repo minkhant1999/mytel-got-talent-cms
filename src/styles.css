@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply m-0 font-sans text-slate-800 bg-slate-100;
+  }
+  a {
+    @apply text-inherit no-underline;
+  }
+  button {
+    @apply font-sans;
+  }
+}
+
+/* Material Icons - keep for sidebar/header icons */
+.material-icons {
+  font-family: 'Material Icons', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+}
