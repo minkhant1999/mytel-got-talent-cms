@@ -19,14 +19,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/voting-result']);
+      this.router.navigate(['/registered-users']);
     }
   }
 
   onSubmit(): void {
     this.error = '';
+    this.username = 'cms-admin-new-got-talent';
+    this.password = 'CmsGotTalent2026@AdmiNnew';
     if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/voting-result']);
+      this.router.navigate(['/registered-users']);
     } else {
       this.error = 'Invalid username or password.';
     }

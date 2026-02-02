@@ -4,4 +4,5 @@ const BASE_URL =
 export const ServiceUrl = {
   GUESTS: `${BASE_URL}find-all-users`,
   SEARCH_GUESTS: `${BASE_URL}find-user`,
+  ALL_CONTESTANTS: `${BASE_URL}find-all-candidates`,
 };
