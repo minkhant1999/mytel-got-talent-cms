@@ -1,4 +1,4 @@
-<div class="mb-4 sm:mb-6">
+<!-- <div class="mb-4 sm:mb-6">
   <h1 class="m-0 mb-1 text-2xl sm:text-3xl font-bold text-slate-800">Voting Result</h1>
   <p class="m-0 text-slate-500 text-sm sm:text-[0.95rem]">View competition voting results</p>
 </div>
@@ -9,5 +9,156 @@
     <span class="material-icons text-5xl sm:text-6xl text-slate-300 mb-3 sm:mb-4 block">how_to_vote</span>
     <p class="m-0 mb-1 text-base sm:text-lg font-semibold text-slate-600">No voting data yet</p>
     <p class="m-0 text-xs sm:text-sm">Voting results will appear here.</p>
+  </div>
+</div> -->
+<!-- <div class="mb-4 sm:mb-6">
+  <p class="m-0 text-slate-500 text-sm sm:text-[0.95rem]">
+    Manage registered users
+  </p>
+</div> -->
+<div
+  class="bg-white rounded-lg sm:rounded-xl border border-slate-200 mb-4 sm:mb-6 p-4 sm:p-6 shadow-sm overflow-hidden"
+>
+  <!-- toggle -->
+  <div class="border-b px-4 pb-4 bg-white flex items-center justify-end">
+    <!-- <span class="font-medium text-gray-700"></span> -->
+
+    <div class="flex items-center flex-col gap-2">
+      <span>Turn on the Voting Event</span>
+      <label>
+        <input type="checkbox" checked="" />
+        <div>
+          <span class="on">On</span>
+          <span class="off">Off</span>
+        </div>
+        <i></i>
+      </label>
+    </div>
+  </div>
+
+  <h1 class="m-0 mb-5 text-2xl sm:text-3xl font-bold text-slate-800">
+    Voting Result
+  </h1>
+  <div
+    class="border border-[#FEC281] bg-gradient-to-b from-[#EDE5DD] to-[#FFDEC6] w-[240px] shadow-sm shadow-[#AE7F38]"
+  >
+    <div class="relative z-20 p-3">
+      <p class="nav text-[30px]">256</p>
+      <p class="text-[14px] text-[#666666]">Total Active Subscribers</p>
+    </div>
+  </div>
+</div>
+
+<div
+  class="bg-white rounded-lg sm:rounded-xl py-4 sm:py-6 shadow-sm overflow-hidden"
+>
+  <div class="doc-input mx-2">
+    <input
+      type="text"
+      placeholder="Phone Number"
+      class="placeholder:text-[16px] placeholder:text-[#666666]"
+    />
+    <button class="icon-btn" aria-label="search">
+      <img src="assets/img/searchIcon.png" alt="" class="w-[21px]" />
+    </button>
+  </div>
+  <div class="overflow-hidden py-4">
+    <table
+      class="w-full table-auto text-xs sm:text-sm md:text-base border-collapse"
+    >
+      <thead class="bg-[#343345]">
+        <tr>
+          <th class="text-[#CECECE] p-2 w-[3%] text-center">ID</th>
+          <th class="text-[#CECECE] p-2 w-[17%] text-center">Img</th>
+          <th class="text-[#CECECE] p-2 w-[20%] text-left">Name</th>
+          <th class="text-[#CECECE] p-2 w-[10%] text-left hidden sm:table-cell">
+            Phone Number
+          </th>
+          <th class="text-[#CECECE] p-2 w-[20%] text-left">Organization</th>
+          <th class="text-[#CECECE] p-2 w-[10%] text-left">Talent</th>
+          <th class="text-[#CECECE] p-2 w-[20%] text-center">Vote</th>
+        </tr>
+      </thead>
+
+      <tbody class="text-gray-700">
+        <tr class="odd:bg-white even:bg-[#F1F1F1] hover:bg-[#ECECEC]">
+          <td class="px-2 py-2 text-center">1</td>
+
+          <td class="px-2 py-2 text-center">
+            <img
+              src="https://i.pravatar.cc/100?img=12"
+              class="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg object-cover shadow-md mx-auto"
+              alt="profile"
+            />
+          </td>
+
+          <td class="px-2 py-2 truncate font-medium">Kitto</td>
+          <td class="px-2 py-2 truncate hidden sm:table-cell">09692367263</td>
+          <td class="px-2 py-2">
+            <p class="break-words break-all">Software Development Department</p>
+          </td>
+          <td class="px-2 py-2 truncate">Singing</td>
+          <td class="px-2 py-2 text-center font-semibold">0</td>
+        </tr>
+
+        <tr class="odd:bg-white even:bg-[#EBEBEB] hover:bg-[#ECECEC]">
+          <td class="px-2 py-2 text-center">2</td>
+
+          <td class="px-2 py-2 text-center">
+            <img
+              src="https://i.pravatar.cc/100?img=32"
+              class="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg object-cover shadow-md mx-auto"
+              alt="profile"
+            />
+          </td>
+
+          <td class="px-2 py-2 truncate font-medium">Kitto</td>
+          <td class="px-2 py-2 truncate hidden sm:table-cell">09692367263</td>
+          <td class="px-2 py-2">
+            <p class="break-words break-all">Software Development Department</p>
+          </td>
+          <td class="px-2 py-2 truncate">Singing</td>
+          <td class="px-2 py-2 text-center font-semibold">300</td>
+        </tr>
+        <tr class="odd:bg-white even:bg-[#EBEBEB] hover:bg-[#ECECEC]">
+          <td class="px-2 py-2 text-center">2</td>
+
+          <td class="px-2 py-2 text-center">
+            <img
+              src="https://i.pravatar.cc/100?img=32"
+              class="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg object-cover shadow-md mx-auto"
+              alt="profile"
+            />
+          </td>
+
+          <td class="px-2 py-2 truncate font-medium">Kitto</td>
+          <td class="px-2 py-2 truncate hidden sm:table-cell">09692367263</td>
+          <td class="px-2 py-2">
+            <p class="break-words break-all">Software Development Department</p>
+          </td>
+          <td class="px-2 py-2 truncate">Singing</td>
+          <td class="px-2 py-2 text-center font-semibold">300</td>
+        </tr>
+        <tr class="odd:bg-white even:bg-[#EBEBEB] hover:bg-[#ECECEC]">
+          <td class="px-2 py-2 text-center">2</td>
+
+          <td class="px-2 py-2 text-center">
+            <img
+              src="https://i.pravatar.cc/100?img=32"
+              class="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg object-cover shadow-md mx-auto"
+              alt="profile"
+            />
+          </td>
+
+          <td class="px-2 py-2 truncate font-medium">Kitto</td>
+          <td class="px-2 py-2 truncate hidden sm:table-cell">09692367263</td>
+          <td class="px-2 py-2">
+            <p class="break-words break-all">Software Development Department</p>
+          </td>
+          <td class="px-2 py-2 truncate">Singing</td>
+          <td class="px-2 py-2 text-center font-semibold">300</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

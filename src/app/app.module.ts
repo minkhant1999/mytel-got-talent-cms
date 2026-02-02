@@ -11,6 +11,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { LoginComponent } from './pages/login/login.component';
 import { VotingResultComponent } from './pages/voting-result/voting-result.component';
 import { RegisteredUsersComponent } from './pages/registered-users/registered-users.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,14 +21,10 @@ import { RegisteredUsersComponent } from './pages/registered-users/registered-us
     HeaderComponent,
     LoginComponent,
     VotingResultComponent,
-    RegisteredUsersComponent
+    RegisteredUsersComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

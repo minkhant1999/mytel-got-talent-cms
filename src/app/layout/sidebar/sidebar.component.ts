@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 export interface NavItem {
   label: string;
   path: string;
-  icon: string;
+  iconUrl: string;
 }
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
   @Input() collapsed = false;
@@ -18,8 +18,16 @@ export class SidebarComponent {
   @Output() toggle = new EventEmitter<void>();
 
   navItems: NavItem[] = [
-    { label: 'Voting Result', path: '/voting-result', icon: 'how_to_vote' },
-    { label: 'Registered Users', path: '/registered-users', icon: 'people' }
+    {
+      label: 'Registered Guests',
+      path: '/registered-users',
+      iconUrl: 'assets/img/Crown.png',
+    },
+    {
+      label: 'Voting Result',
+      path: '/voting-result',
+      iconUrl: 'assets/img/Vector.png',
+    },
   ];
 
   constructor(public router: Router) {}
