@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +11,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { LoginComponent } from './pages/login/login.component';
 import { VotingResultComponent } from './pages/voting-result/voting-result.component';
 import { RegisteredUsersComponent } from './pages/registered-users/registered-users.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,20 @@ import { HttpClientModule } from '@angular/common/http';
     VotingResultComponent,
     RegisteredUsersComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

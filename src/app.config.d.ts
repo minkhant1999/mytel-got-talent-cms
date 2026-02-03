@@ -3,5 +3,7 @@ declare module 'src/assets/app.config.js' {
     GUESTS: string;
     SEARCH_GUESTS: string;
     ALL_CONTESTANTS: string;
+    SEARCH_CONTESTANTS: string;
+    Login: string;
   };
 }

@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
+import { CmsServiceService } from '../services/cms-service.service';
 
 const AUTH_KEY = 'mytel-cms-auth';
-const VALID_USERNAME = 'cms-admin-new-got-talent';
-const VALID_PASSWORD = 'CmsGotTalent2026@AdmiNnew';
-
+// const VALID_USERNAME = 'cms-admin-new-got-talent';
+// const VALID_PASSWORD = 'CmsGotTalent2026@AdmiNnew';
+const TOKEN_KEY = 'cms-token';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  saveTokens(token: string) {
+    localStorage.setItem(TOKEN_KEY, token);
+    sessionStorage.setItem('mytel-cms-auth', 'true');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(TOKEN_KEY);
+  }
+
   isAuthenticated(): boolean {
-    return sessionStorage.getItem(AUTH_KEY) === 'true';
+    return !!this.getToken();
   }
 
-  login(username: string, password: string): boolean {
-    if (username === VALID_USERNAME && password === VALID_PASSWORD) {
-      sessionStorage.setItem(AUTH_KEY, 'true');
-      localStorage.setItem('username', VALID_USERNAME);
-      localStorage.setItem('password', VALID_PASSWORD);
-      return true;
-    }
-    return false;
-  }
-
-  logout(): void {
-    sessionStorage.removeItem(AUTH_KEY);
+  logout() {
+    localStorage.removeItem(TOKEN_KEY);
+    sessionStorage.clear();
   }
 }

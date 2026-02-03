@@ -6,19 +6,28 @@ import { ServiceUrl } from 'src/assets/app.config.js';
   providedIn: 'root',
 })
 export class CmsServiceService {
-  private readonly _search = ServiceUrl.SEARCH_GUESTS;
+  private readonly _searchG = ServiceUrl.SEARCH_GUESTS;
   private readonly guests = ServiceUrl.GUESTS;
   private readonly candidates = ServiceUrl.ALL_CONTESTANTS;
+  private readonly login = ServiceUrl.Login;
+  private readonly _searchP = ServiceUrl.SEARCH_CONTESTANTS;
   constructor(private http: HttpClient) {}
 
-  search(params: any) {
-    return this.http.get(this._search, { params });
-  }
-  guest(params: any) {
-    return this.http.get(this.guests, { params });
+  searchG(params: any) {
+    return this.http.get(this._searchG, { params });
   }
 
-  participants(params: any) {
-    return this.http.get(this.candidates, { params });
+  guest() {
+    return this.http.get(this.guests);
+  }
+  participants() {
+    return this.http.get(this.candidates);
+  }
+  searchP(params: any) {
+    return this.http.get(this._searchP, { params });
+  }
+
+  login_service(body: any) {
+    return this.http.post(this.login, body);
   }
 }
