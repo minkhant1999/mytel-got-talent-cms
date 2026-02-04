@@ -62,4 +62,51 @@
       </tbody>
     </table>
   </div>
+  <div class="pt-4 px-4 pb-2 flex justify-between items-center">
+    <div class="text-[#666666]">
+      {{ startItem }}-{{ endItem }} of {{ totalItems }}
+    </div>
+    <div class="flex gap-2 items-center">
+      <button
+        (click)="goToFirst()"
+        [disabled]="currentPage === 1"
+        class="w-[32px] h-[32px] flex items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed text-gray-600"
+      >
+        <mat-icon class="text-[20px]">first_page</mat-icon>
+      </button>
+      <button
+        (click)="goToPrevious()"
+        [disabled]="currentPage === 1"
+        class="w-[32px] h-[32px] flex items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed text-gray-600"
+      >
+        <mat-icon class="text-[20px]">chevron_left</mat-icon>
+      </button>
+      <button
+        *ngFor="let page of pageNumbers"
+        (click)="onPageClick(page)"
+        [style.background-color]="isActivePage(page) ? '#FD6D1A' : 'white'"
+        [style.color]="isActivePage(page) ? 'white' : 'inherit'"
+        [style.border-color]="isActivePage(page) ? '#FD6D1A' : '#d1d5db'"
+        [style.cursor]="isNumber(page) ? 'pointer' : 'default'"
+        class="min-w-[32px] h-[32px] px-2 flex items-center justify-center rounded-lg border bg-white hover:bg-gray-50"
+        [disabled]="!isNumber(page)"
+      >
+        {{ page }}
+      </button>
+      <button
+        (click)="goToNext()"
+        [disabled]="currentPage === totalPages"
+        class="w-[32px] h-[32px] flex items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed text-gray-600"
+      >
+        <mat-icon class="text-[20px]">chevron_right</mat-icon>
+      </button>
+      <button
+        (click)="goToLast()"
+        [disabled]="currentPage === totalPages"
+        class="w-[32px] h-[32px] flex items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed text-gray-600"
+      >
+        <mat-icon class="text-[20px]">last_page</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>

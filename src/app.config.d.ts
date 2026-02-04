@@ -6,4 +6,5 @@ declare module 'src/assets/app.config.js' {
     SEARCH_CONTESTANTS: string;
     Login: string;
   };
+  export const WS_URL: string;
 }

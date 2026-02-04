@@ -13,7 +13,7 @@ import { VotingResultComponent } from './pages/voting-result/voting-result.compo
 import { RegisteredUsersComponent } from './pages/registered-users/registered-users.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth.interceptor';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +30,7 @@ import { AuthInterceptor } from './core/auth.interceptor';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatIconModule,
   ],
   providers: [
     {

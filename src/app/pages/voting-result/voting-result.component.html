@@ -15,12 +15,20 @@
   <div class="border-b px-4 pb-4 bg-white flex items-center justify-end">
     <div class="flex items-center flex-col gap-2">
       <span>Turn on the Voting Event</span>
-      <label>
-        <input type="checkbox" checked />
+      <label class="cursor-pointer">
+        <input
+          type="checkbox"
+          class="hidden"
+          [checked]="votingEnabled"
+          #toggle
+          (change)="switchVoting()"
+        />
+
         <div>
-          <span class="on">On</span>
-          <span class="off">Off</span>
+          <span class="on" *ngIf="votingEnabled">On</span>
+          <span class="off" *ngIf="!votingEnabled">Off</span>
         </div>
+
         <i></i>
       </label>
     </div>

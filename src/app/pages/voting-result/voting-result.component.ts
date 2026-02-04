@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { CmsServiceService } from 'src/app/services/cms-service.service';
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
   selector: 'app-voting-result',
@@ -12,9 +14,13 @@ export class VotingResultComponent implements OnInit {
   filteredUsers: any[] = [];
   searchForm: FormGroup;
 
+  votingEnabled = false;
+  private wsSub!: Subscription;
+
   constructor(
     private cmsService: CmsServiceService,
     private fb: FormBuilder,
+    private ws: WebsocketService,
   ) {
     this.searchForm = this.fb.group({
       number: [''], // lowercase for convention
@@ -23,6 +29,34 @@ export class VotingResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllContestant();
+    // this.cmsService.voteSwitch(null).subscribe({
+    //   next: (isEnabled: boolean) => (this.votingEnabled = isEnabled),
+    //   error: (err) => console.error('Error fetching voting status', err),
+    // });
+    const saved = localStorage.getItem('votingEnabled');
+    this.votingEnabled = saved === 'true';
+  }
+
+  // switchVoting(enabled: boolean) {
+  //   this.wsSub = this.cmsService.voteSwitch(enabled).subscribe({
+  //     next: (isEnabled: boolean) => {
+  //       this.votingEnabled = isEnabled;
+  //       console.log('Voting status:', isEnabled);
+  //     },
+  //     error: (err) => console.error('Error switching vote:', err),
+  //   });
+  // }
+  switchVoting() {
+    const newValue = !this.votingEnabled;
+
+    this.wsSub = this.cmsService.voteSwitch(newValue).subscribe({
+      next: (isEnabled: boolean) => {
+        this.votingEnabled = isEnabled;
+        console.log('Voting status:', isEnabled);
+        localStorage.setItem('votingEnabled', isEnabled.toString());
+      },
+      error: (err) => console.error('Error switching vote:', err),
+    });
   }
 
   // Fetch all contestants/users
@@ -30,7 +64,7 @@ export class VotingResultComponent implements OnInit {
     this.cmsService.participants().subscribe({
       next: (res: any) => {
         if (res.success) {
-          this.users = res.result.candidates;
+          this.users = res.result;
           this.filteredUsers = [...this.users];
         }
       },

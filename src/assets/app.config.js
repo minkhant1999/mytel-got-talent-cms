@@ -8,3 +8,5 @@ export const ServiceUrl = {
   SEARCH_CONTESTANTS: `${BASE_URL}find-candidate`,
   Login: `${BASE_URL}login`,
 };
+
+export const WS_URL = "ws://10.201.234.135:8889/mytel-got-talent-voting-system";
