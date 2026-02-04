@@ -59,7 +59,6 @@ export class VotingResultComponent implements OnInit {
     });
   }
 
-  // Fetch all contestants/users
   getAllContestant() {
     this.cmsService.participants().subscribe({
       next: (res: any) => {
