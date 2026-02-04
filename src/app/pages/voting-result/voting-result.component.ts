@@ -15,6 +15,7 @@ export class VotingResultComponent implements OnInit {
   searchForm: FormGroup;
 
   votingEnabled = false;
+  resultEnabled = false;
   private wsSub!: Subscription;
 
   constructor(
@@ -35,6 +36,9 @@ export class VotingResultComponent implements OnInit {
     // });
     const saved = localStorage.getItem('votingEnabled');
     this.votingEnabled = saved === 'true';
+
+    const saved2 = localStorage.getItem('resultEnabled');
+    this.resultEnabled = saved === 'true';
   }
 
   // switchVoting(enabled: boolean) {
@@ -54,6 +58,19 @@ export class VotingResultComponent implements OnInit {
         this.votingEnabled = isEnabled;
         console.log('Voting status:', isEnabled);
         localStorage.setItem('votingEnabled', isEnabled.toString());
+      },
+      error: (err) => console.error('Error switching vote:', err),
+    });
+  }
+
+  switchResult() {
+    const newValue = !this.resultEnabled;
+
+    this.wsSub = this.cmsService.resultSwitch(newValue).subscribe({
+      next: (isEnabled: boolean) => {
+        this.resultEnabled = isEnabled;
+        console.log('Result status:', isEnabled);
+        localStorage.setItem('resultEnabled', isEnabled.toString());
       },
       error: (err) => console.error('Error switching vote:', err),
     });

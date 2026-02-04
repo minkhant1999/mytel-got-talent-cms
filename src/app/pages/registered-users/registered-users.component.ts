@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CmsServiceService } from 'src/app/services/cms-service.service';
@@ -26,7 +27,7 @@ export class RegisteredUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllUser();
+    this.getAllUser(0);
   }
   get startItem() {
     if (this.totalItems === 0) return 0;
@@ -73,37 +74,45 @@ export class RegisteredUsersComponent implements OnInit {
   }
 
   goToPage(page: number) {
+    console.log('Go to page:', page);
+
     if (page >= 1 && page <= this.totalPages && page !== this.currentPage) {
-      this.currentPage = page;
-      this.getAllUser();
+      this.currentPage = page - 1;
+      this.getAllUser(this.currentPage);
     }
   }
 
   goToFirst() {
     if (this.currentPage !== 1) {
-      this.currentPage = 1;
-      this.getAllUser();
+      this.currentPage = 0;
+      console.log('go to first', this.currentPage);
+
+      this.getAllUser(this.currentPage);
     }
   }
 
   goToPrevious() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.getAllUser();
+
+      this.getAllUser(this.currentPage - 1);
     }
   }
 
   goToNext() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.getAllUser();
+
+      console.log('go to next', this.currentPage - 1);
+
+      this.getAllUser(this.currentPage - 1);
     }
   }
 
   goToLast() {
     if (this.currentPage !== this.totalPages) {
       this.currentPage = this.totalPages;
-      this.getAllUser();
+      this.getAllUser(this.currentPage - 1);
     }
   }
 
@@ -112,6 +121,8 @@ export class RegisteredUsersComponent implements OnInit {
   }
 
   onPageClick(page: number | string) {
+    console.log('PAGE:', page);
+
     if (this.isNumber(page)) {
       this.goToPage(page as number);
     }
@@ -120,15 +131,15 @@ export class RegisteredUsersComponent implements OnInit {
   isActivePage(page: number | string): boolean {
     return this.isNumber(page) && page === this.currentPage;
   }
-  getAllUser() {
-    this.cmsService.guest().subscribe((res: any) => {
+  getAllUser(page: any) {
+    this.cmsService.guest({ page: page }).subscribe((res: any) => {
       if (res.success) {
         this.users = res.result.users;
         this.filteredUsers = [...this.users];
 
         this.totalItems = res.result.totalItems || this.users.length;
         this.totalPages = res.result.totalPages || 1;
-        this.currentPage = (res.esult.currentPage ?? 0) + 1;
+        this.currentPage = (res.result.currentPage ?? 0) + 1;
       }
     });
   }
@@ -139,7 +150,7 @@ export class RegisteredUsersComponent implements OnInit {
     let page = this.currentPage - 1;
     let size = this.itemsPerPage;
     if (!keyword) {
-      this.getAllUser(); // show all if search is empty
+      this.getAllUser(page); // show all if search is empty
       return;
     }
 

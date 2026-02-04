@@ -12,7 +12,26 @@
 <div
   class="bg-white rounded-lg sm:rounded-xl border border-slate-200 mb-4 sm:mb-6 p-4 sm:p-6 shadow-sm overflow-hidden"
 >
-  <div class="border-b px-4 pb-4 bg-white flex items-center justify-end">
+  <div class="border-b px-4 pb-4 bg-white flex items-center justify-between">
+    <div class="flex items-center flex-col gap-2">
+      <span>Turn on to show Result</span>
+      <label class="cursor-pointer">
+        <input
+          type="checkbox"
+          class="hidden"
+          [checked]="resultEnabled"
+          #toggle
+          (change)="switchResult()"
+        />
+
+        <div>
+          <span class="on" *ngIf="resultEnabled">On</span>
+          <span class="off" *ngIf="!resultEnabled">Off</span>
+        </div>
+
+        <i></i>
+      </label>
+    </div>
     <div class="flex items-center flex-col gap-2">
       <span>Turn on the Voting Event</span>
       <label class="cursor-pointer">

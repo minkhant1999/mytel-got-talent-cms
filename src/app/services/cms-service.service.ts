@@ -18,8 +18,8 @@ export class CmsServiceService {
     return this.http.get(this._searchG, { params });
   }
 
-  guest() {
-    return this.http.get(this.guests);
+  guest(params: any) {
+    return this.http.get(this.guests, { params });
   }
   participants() {
     return this.http.get(this.candidates);
@@ -39,6 +39,16 @@ export class CmsServiceService {
       )
       .pipe(
         map((res) => res.result.votingEnabled), // only return the boolean
+      );
+  }
+  resultSwitch(enabled: boolean) {
+    return this.http
+      .post<any>(
+        'http://10.201.234.189:8889/mytel-got-talent-voting-system/cms/auth/announcement-switch',
+        { enabled },
+      )
+      .pipe(
+        map((res) => res.result.announcementEnabled), // only return the boolean
       );
   }
 }

@@ -15,6 +15,12 @@ export class WebsocketService {
     }
   }
 
+  connect2() {
+    if (!this.socket$ || this.socket$.closed) {
+      this.socket$ = webSocket(`${WS_URL}/cms/auth/announcement-switch`);
+    }
+  }
+
   voteSwitch(enabled: boolean) {
     this.connect();
 
@@ -25,6 +31,19 @@ export class WebsocketService {
     return this.socket$.pipe(
       take(1),
       map((res: any) => res.result.votingEnabled),
+    );
+  }
+
+  resultSwitch(enabled: boolean) {
+    this.connect();
+
+    // send
+    this.socket$.next({ enabled });
+
+    // wait for ONE reply only
+    return this.socket$.pipe(
+      take(1),
+      map((res: any) => res.result.announcementEnabled),
     );
   }
 

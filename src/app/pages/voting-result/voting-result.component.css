@@ -221,3 +221,5 @@ label input:checked + div:after {
 label input:not(:checked) + div:after {
   animation: switchOff 0.5s ease-in-out forwards;
 }
+
+/* result  */
