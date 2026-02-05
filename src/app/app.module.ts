@@ -14,6 +14,9 @@ import { RegisteredUsersComponent } from './pages/registered-users/registered-us
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth.interceptor';
 import { MatIconModule } from '@angular/material/icon';
+import { ErrorDialogComponent } from './shared/error-dialog/error-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     VotingResultComponent,
     RegisteredUsersComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,8 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     HttpClientModule,
     MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   providers: [
     {

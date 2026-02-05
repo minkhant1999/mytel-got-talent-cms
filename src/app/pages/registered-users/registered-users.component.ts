@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CmsServiceService } from 'src/app/services/cms-service.service';
+import { interval, Subscription } from 'rxjs';
 @Component({
   selector: 'app-registered-users',
   templateUrl: './registered-users.component.html',
@@ -16,6 +17,7 @@ export class RegisteredUsersComponent implements OnInit {
   itemsPerPage = 10;
   totalItems = 0;
   totalPages = 0;
+  private refreshSub!: Subscription;
 
   constructor(
     private cmsService: CmsServiceService,
@@ -25,10 +27,23 @@ export class RegisteredUsersComponent implements OnInit {
       Number: [''],
     });
   }
-
   ngOnInit(): void {
     this.getAllUser(0);
+
+    this.refreshSub = interval(600000).subscribe(() => {
+      const now = new Date();
+
+      if (now.getHours() === 0) {
+        console.log(' Midnight reached — stopping auto refresh');
+        this.refreshSub.unsubscribe();
+        return;
+      }
+
+      const pageIndex = this.currentPage - 1;
+      this.getAllUser(pageIndex);
+    });
   }
+
   get startItem() {
     if (this.totalItems === 0) return 0;
     return (this.currentPage - 1) * this.itemsPerPage + 1;
